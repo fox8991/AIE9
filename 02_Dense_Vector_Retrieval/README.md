@@ -9,7 +9,8 @@
 
 | 📰 Session Sheet | ⏺️ Recording     | 🖼️ Slides        | 👨‍💻 Repo         | 📝 Homework      | 📁 Feedback       |
 |:-----------------|:-----------------|:-----------------|:-----------------|:-----------------|:-----------------|
-|[Dense Vector Retrieval](https://github.com/AI-Maker-Space/AIE9/blob/main/00_Docs/Session_Sheets/02_Dense_Vector_Retrieval.md) | Coming soon! | Coming soon! | You are here! | Coming soon! | Coming soon! |
+|[Dense Vector Retrieval](../00_Docs/Session_Sheets/02_Dense_Vector_Retrieval.md) |[Recording!](https://us02web.zoom.us/rec/share/91RvgSsquU3LHdQIelq_XfsX_um9NrqaN5YBBBHtnUbkDLo5Ngy7otxlDGCTLBrV.zwbgMtyEdRE5dASI) (%N6ZHDEz)| [Session 2 Slides](https://www.canva.com/design/DAG-EJWkrYk/Oj3SPEB09HDScDpnEiWHMA/edit?utm_content=DAG-EJWkrYk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton) | You are here! | [Session 2 Assignment: Pythonic RAG](https://forms.gle/WB87UU7S1vp93yUZ9) | [Feedback 1/15](https://forms.gle/9qZGU19jGmg4RZdd8) |
+
 
 
 ### Outline:
