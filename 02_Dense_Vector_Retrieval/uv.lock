@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.11"
 resolution-markers = [
     "python_full_version >= '3.14'",
@@ -15,7 +15,7 @@ dependencies = [
     { name = "ipykernel" },
     { name = "jupyter" },
     { name = "matplotlib" },
-    { name = "nump" },
+    { name = "numpy" },
     { name = "openai" },
     { name = "pandas" },
     { name = "plotly" },
@@ -29,7 +29,7 @@ requires-dist = [
     { name = "ipykernel", specifier = ">=6.29.5" },
     { name = "jupyter", specifier = ">=1.1.1" },
     { name = "matplotlib", specifier = ">=3.10.0" },
-    { name = "nump", specifier = ">=5.5.5.5" },
+    { name = "numpy", specifier = ">=1.24.0" },
     { name = "openai", specifier = ">=1.59.7" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "plotly", specifier = ">=5.24.1" },
@@ -1371,18 +1371,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/54/d2/92fa3243712b9a3e8bafaf60aac366da1cada3639ca767ff4b5b3654ec28/notebook_shim-0.2.4.tar.gz", hash = "sha256:b4b2cfa1b65d98307ca24361f5b30fe785b53c3fd07b7a47e89acb5e6ac638cb", size = 13167, upload-time = "2024-02-14T23:35:18.353Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/f9/33/bd5b9137445ea4b680023eb0469b2bb969d61303dedb2aac6560ff3d14a1/notebook_shim-0.2.4-py3-none-any.whl", hash = "sha256:411a5be4e9dc882a074ccbcae671eda64cceb068767e9a3419096986560e1cef", size = 13307, upload-time = "2024-02-14T23:35:16.286Z" },
-]
-
-[[package]]
-name = "nump"
-version = "5.5.5.5"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "numpy" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/c3/f2/f9f583af4bda72bbcdb87ced227b00cc84634cffc9121b3abfe4e3683ee5/nump-5.5.5.5.tar.gz", hash = "sha256:13585da36ad85c93fbbf21a1685b617097d6f2eb67046406085cfea7fbc96fa3", size = 1356, upload-time = "2024-10-05T11:40:51.433Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/4d/41/00290fc1f0849553e13690e6a2c7ac5e7ddc4276d8a0f3ddb3cc149cef2d/nump-5.5.5.5-py3-none-any.whl", hash = "sha256:c11380432c5fcfb4c78ca6cfcee452083cb0a97e2d6edbd92caa5058a2f4a576", size = 1108, upload-time = "2024-10-05T11:40:49.829Z" },
 ]
 
 [[package]]
