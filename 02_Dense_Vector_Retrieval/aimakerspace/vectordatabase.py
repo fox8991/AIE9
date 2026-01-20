@@ -2,6 +2,8 @@ import numpy as np
 from collections import defaultdict
 from typing import List, Tuple, Callable
 from aimakerspace.openai_utils.embedding import EmbeddingModel
+from aimakerspace.text_utils import Document
+from typing import Dict, Any
 import asyncio
 
 
@@ -16,19 +18,23 @@ def cosine_similarity(vector_a: np.array, vector_b: np.array) -> float:
 class VectorDatabase:
     def __init__(self, embedding_model: EmbeddingModel = None):
         self.vectors = defaultdict(np.array)
+        self.metadata = {} 
         self.embedding_model = embedding_model or EmbeddingModel()
 
-    def insert(self, key: str, vector: np.array) -> None:
+    def insert(self, key: str, vector: np.array, metadata: Dict[str, Any] = None) -> None:
+        """For a chunk of text, insert its embedding vector and metadata into the database."""
         self.vectors[key] = vector
+        if metadata:
+            self.metadata[key] = metadata
 
     def search(
         self,
         query_vector: np.array,
         k: int,
         distance_measure: Callable = cosine_similarity,
-    ) -> List[Tuple[str, float]]:
+    ) -> List[Tuple[str, float, dict]]:
         scores = [
-            (key, distance_measure(query_vector, vector))
+            (key, distance_measure(query_vector, vector), self.metadata.get(key, {}))
             for key, vector in self.vectors.items()
         ]
         return sorted(scores, key=lambda x: x[1], reverse=True)[:k]
@@ -39,7 +45,7 @@ class VectorDatabase:
         k: int,
         distance_measure: Callable = cosine_similarity,
         return_as_text: bool = False,
-    ) -> List[Tuple[str, float]]:
+    ) -> List[Tuple[str, float, dict]]:
         query_vector = self.embedding_model.get_embedding(query_text)
         results = self.search(query_vector, k, distance_measure)
         return [result[0] for result in results] if return_as_text else results
@@ -53,6 +59,13 @@ class VectorDatabase:
             self.insert(text, np.array(embedding))
         return self
 
+    async def abuild_from_documents(self, documents: List[Document]) -> "VectorDatabase":
+        """Build from Document objects, preserving metadata."""
+        texts = [doc.text for doc in documents]
+        embeddings = await self.embedding_model.async_get_embeddings(texts)
+        for doc, embedding in zip(documents, embeddings):
+            self.insert(doc.text, np.array(embedding), doc.metadata)
+        return self
 
 if __name__ == "__main__":
     list_of_text = [
