@@ -17,4 +17,5 @@ dependencies = [
     "python-dotenv>=1.0.1",
     "tiktoken>=0.8.0",
     "nest-asyncio>=1.6.0",
+    "sentence-transformers>=5.2.0",
 ]
