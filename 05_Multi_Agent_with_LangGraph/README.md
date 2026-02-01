@@ -207,3 +207,90 @@ Follow these steps to prepare and submit your homework:
 When submitting your homework, provide:
 - Your Loom video link
 - The GitHub URL to your completed notebook
+
+
+## Advanced Build of multi-agent wellness planner with file I/O
+
+### Architecture Diagram
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                     WELLNESS PLANNER MULTI-AGENT SYSTEM                      │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+                              User Request
+                                   │
+                                   ▼
+                    ┌──────────────────────────────┐
+                    │    PLANNER SUPERVISOR        │
+                    │         (GPT-5.2)            │
+                    │                              │
+                    │  - Classifies query type     │
+                    │  - Routes to specialists     │
+                    │  - Aggregates responses      │
+                    │  - Sends to file manager     │
+                    └──────────────┬───────────────┘
+                                   │
+         ┌────────────┬────────────┼────────────┬────────────┐
+         │            │            │            │            │
+         ▼            ▼            ▼            ▼            ▼
+   ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────────┐
+   │ EXERCISE │ │NUTRITION │ │  SLEEP   │ │  STRESS  │ │ FILE MANAGER │
+   │  AGENT   │ │  AGENT   │ │  AGENT   │ │  AGENT   │ │    AGENT     │
+   │(GPT-4o-  │ │(GPT-4o-  │ │(GPT-4o-  │ │(GPT-4o-  │ │  (GPT-5.2)   │
+   │  mini)   │ │  mini)   │ │  mini)   │ │  mini)   │ │              │
+   └────┬─────┘ └────┬─────┘ └────┬─────┘ └────┬─────┘ └──────┬───────┘
+        │            │            │            │              │
+        │      Returns to Supervisor           │              │
+        └────────────┴────────────┴────────────┘              │
+                                                              │
+                                                              ▼
+                                                    ┌─────────────────┐
+                                                    │  ./plans/*.md   │
+                                                    │                 │
+                                                    │  File Tools:    │
+                                                    │  - save         │
+                                                    │  - load         │
+                                                    │  - list         │
+                                                    │  - append       │
+                                                    └─────────────────┘
+```
+
+### Query Type Flows
+
+| Query Type | Example | Flow |
+|------------|---------|------|
+| **CREATE** | "Create a wellness plan for weight loss" | Supervisor → Specialists (sequential) → Supervisor → File Manager (save) |
+| **LIST** | "Show my saved plans" | Supervisor → File Manager (list) |
+| **LOAD** | "Load my weight loss plan" | Supervisor → File Manager (load) |
+| **APPEND** | "Add sleep tips to my plan" | Supervisor → Specialist → Supervisor → File Manager (append) |
+| **SIMPLE** | "Hello" | Supervisor → FINISH |
+
+### Components
+
+| Component | Model | Responsibility |
+|-----------|-------|----------------|
+| **Planner Supervisor** | GPT-5.2 | Query classification, routing, plan aggregation |
+| **Exercise Agent** | GPT-4o-mini | Fitness and workout advice |
+| **Nutrition Agent** | GPT-4o-mini | Diet and meal planning advice |
+| **Sleep Agent** | GPT-4o-mini | Sleep hygiene and rest advice |
+| **Stress Agent** | GPT-4o-mini | Stress management and mindfulness advice |
+| **File Manager Agent** | GPT-5.2 | File operations (save, load, list, append) |
+
+### File Tools for File Manager
+
+| Tool | Description |
+|------|-------------|
+| `save_wellness_plan(filename, content)` | Save a new wellness plan to markdown |
+| `load_wellness_plan(filename)` | Load an existing plan |
+| `list_saved_plans()` | List all saved plans in ./plans/ |
+| `append_to_plan(filename, content)` | Append content to an existing plan |
+
+### Key Design Decisions
+
+1. **Sequential Specialist Routing**: Supervisor calls specialists one at a time, checking conversation history to track who responded
+2. **Semantic Plan Matching**: File manager matches user descriptions (e.g., "weight loss") to actual filenames
+3. **Structured Output for Supervisor**: Uses Pydantic BaseModel to guarantee routing decisions
+4. **Minimal State**: Only `messages` and `next` in state - let the LLM read conversation history
+
+
