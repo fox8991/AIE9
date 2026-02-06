@@ -7,6 +7,8 @@
 
 | 📰 Session Sheet | ⏺️ Recording     | 🖼️ Slides        | 👨‍💻 Repo         | 📝 Homework      | 📁 Feedback       |
 |:-----------------|:-----------------|:-----------------|:-----------------|:-----------------|:-----------------|
+| [Deep Research](https://github.com/AI-Maker-Space/AIE9/blob/main/00_Docs/Session_Sheets/08_Deep_Research.md) |[Recording!](https://us02web.zoom.us/rec/share/ToEgdxKPn70G7FQ8TF0pDKkrjv3shZ7hq1euHXMtyBtYBn0MLmFnJnpN9CUEYJXj.Ux0nruuKu0vdy4DZ) <br> passcode: `N6Z!wYZK`| [Session 8 Slides](https://www.canva.com/design/DAHAfddj_ZU/qJXbT326dq-6I3J9XMXuiw/edit?utm_content=DAHAfddj_ZU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton) | You are here! | [Session 8 Assignment: Deep Research](https://forms.gle/U1EF4AE4H9SVwu3K6) | [Feedback 2/5](https://forms.gle/KpXct5ouqnbR68PQA) |
+
 
 ### Steps to Run:
 
