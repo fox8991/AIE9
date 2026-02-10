@@ -189,6 +189,51 @@ When submitting, provide:
 
 </details>
 
+# Additional Files
+
+Beyond the [Deep_Agents_Assignment.ipynb](Deep_Agents_Assignment.ipynb) notebook, the following files and directories were added to complete the assignment.
+
+## Breakout Room 1 — Deep Agent Foundations (Tasks 1–5, Activity #1)
+
+**[workspace/](workspace/)** — Agent-generated files from Tasks 4–5 and Activity #1:
+- Root-level guides and plans: wellness programs, stress management guides, sleep improvement plans, morning routine guides, nutrition plans, exercise plans (e.g., `alex_complete_wellness_program.md`, `meal_plan_14_days_vegetarian.txt`)
+- `exercise_programs/` — Generated exercise programs
+- `research/` — Research notes on sleep and wellness
+
+## Breakout Room 2 — Advanced Features (Tasks 6–10, Activity #2)
+
+### Task 8 & 10: Skills and Wellness Coach
+
+**[skills/wellness-assessment/](skills/wellness-assessment/)** — Health and wellness assessment skill introduced in Task 8 and used by the Wellness Coach in Task 10.
+
+### Activity #2: 30-Day Wellness Challenge
+
+**Skills** in [skills/](skills/):
+- `challenge-setup` — Initialize a new 30-day wellness challenge
+- `daily-checkin` — Daily check-in prompts and logging
+- `weekly-review` — Weekly summary and review generation
+- `plan-adaptation` — Adapt plans based on progress and feedback
+- `challenge-completion` — Final summary when user completes the 30-day challenge
+
+**Agent-generated files** in [workspace/challenges/](workspace/challenges/):
+- `user_alice/30_day_plan.md` — Overall 30-day challenge plan
+- `user_alice/daily_logs/` — Daily logs (`day_01.json` – `day_30.json`)
+- `user_alice/weekly_reports/` — Weekly progress reports
+- `user_alice/final_summary.md` — 30-day completion report
+
+## Advanced Build: AI Life Coach
+
+**Skills** in [skills/](skills/):
+- `life-assessment` — Comprehensive life assessment questionnaire
+- `priority-setting` — Help users identify and rank priorities
+- `action-planning` — Generate structured action plans
+- `weekly-checkin` — Weekly progress check-ins
+
+**Agent-generated files** in [workspace/users/](workspace/users/):
+- `user_john/assessments/initial_assessment.md` — Initial life assessment
+- `user_john/plans/action_plan.md` — Integrated 90-day action plan
+- `user_john/progress/week_01.json` — Weekly progress tracking
+
 # Submitting Your Homework
 
 ## Main Assignment

@@ -6,4 +6,3 @@ __pycache__/
 .langgraph_api/
 .venv
 uv.lock
-workspace
