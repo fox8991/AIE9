@@ -3,7 +3,7 @@
      height="auto"/>
 </p>
 
-## <h1 align="center" id="heading">Session 12: Industry Use Cases</h1>
+## <h1 align="center" id="heading">Session 12: Certification Challenge</h1>
 | 📰 Session Sheet | ⏺️ Recording     | 🖼️ Slides        | 👨‍💻 Repo         | 📝 Homework      | 📁 Feedback       |
 |:-----------------|:-----------------|:-----------------|:-----------------|:-----------------|:-----------------|
 | [Industry Use Cases](https://github.com/AI-Maker-Space/AIE9/tree/main/00_Docs/Session_Sheets/12_Industry_Use_Cases) |[Recording!](https://us02web.zoom.us/rec/share/SBatPUo5ZEFKDBhjl1tNo4LxgkZJU9SUHCcPQZZY-MPSw5SA-DT78c_RLIglQD8.84JOZk6uq0hNt4Ov) <br> passcode: `G9?vCPR!`| [Session 12 Slides](https://www.canva.com/design/DAG-EPmlD1w/8U1cQ_UuwRej5uZNxaI1ZQ/edit?utm_content=DAG-EPmlD1w&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton) | You are here! | [Certification Challenge](https://forms.gle/yxvhpXiaMDUJ28Gv5) | [Feedback 2/19](https://forms.gle/jKhV6qgksdvgFhWw5) |
