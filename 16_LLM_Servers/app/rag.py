@@ -40,7 +40,7 @@ class _RAGState(TypedDict):
     response: str
 
 
-def _build_rag_graph(data_dir: str):
+def _build_rag_graph(data_dir: str, embedding_model=None, generator_llm=None):
     """Construct and compile a minimal RAG graph.
 
     Steps:
@@ -49,6 +49,11 @@ def _build_rag_graph(data_dir: str):
     3) Create embeddings and an in-memory Qdrant vector store retriever.
     4) Define a chat prompt and generation model.
     5) Wire a two-node graph: retrieve -> generate.
+
+    Args:
+        data_dir: Path to directory containing PDF files.
+        embedding_model: Optional embedding model. Defaults to Fireworks.
+        generator_llm: Optional chat model. Defaults to Fireworks.
     """
     # Load PDFs from data directory (recursive)
     try:
@@ -68,13 +73,14 @@ def _build_rag_graph(data_dir: str):
     chunks = text_splitter.split_documents(documents) if documents else []
 
     # Embeddings and vector store (in-memory Qdrant)
-    embedding_model = OpenAIEmbeddings(
-        model=os.environ.get("FIREWORKS_EMBEDDING_MODEL", "accounts/fireworks/models/qwen3-embedding-8b"),
-        openai_api_key=os.environ["FIREWORKS_API_KEY"],
-        openai_api_base="https://api.fireworks.ai/inference/v1",
-        check_embedding_ctx_length=False,
-        dimensions=4096,
-    )
+    if embedding_model is None:
+        embedding_model = OpenAIEmbeddings(
+            model=os.environ.get("FIREWORKS_EMBEDDING_MODEL", "accounts/fireworks/models/qwen3-embedding-8b"),
+            openai_api_key=os.environ["FIREWORKS_API_KEY"],
+            openai_api_base="https://api.fireworks.ai/inference/v1",
+            check_embedding_ctx_length=False,
+            dimensions=4096,
+        )
     qdrant_vectorstore = QdrantVectorStore.from_documents(
         documents=chunks,
         embedding=embedding_model,
@@ -90,11 +96,12 @@ def _build_rag_graph(data_dir: str):
         "Only use the provided context to answer the query. If you do not know the answer, or it's not contained in the provided context respond with \"I don't know\""
     )
     chat_prompt = ChatPromptTemplate.from_messages([("human", human_template)])
-    generator_llm = ChatOpenAI(
-        model=os.environ.get("FIREWORKS_CHAT_MODEL", "accounts/fireworks/models/gpt-oss-20b"),
-        openai_api_key=os.environ["FIREWORKS_API_KEY"],
-        openai_api_base="https://api.fireworks.ai/inference/v1",
-    )
+    if generator_llm is None:
+        generator_llm = ChatOpenAI(
+            model=os.environ.get("FIREWORKS_CHAT_MODEL", "accounts/fireworks/models/gpt-oss-20b"),
+            openai_api_key=os.environ["FIREWORKS_API_KEY"],
+            openai_api_base="https://api.fireworks.ai/inference/v1",
+        )
 
     def retrieve(state: _RAGState) -> _RAGState:
         retrieved_docs = retriever.invoke(state["question"]) if retriever else []
